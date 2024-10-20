@@ -1,7 +1,7 @@
 package Mts.Crud.Dto;
 
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 import Mts.Crud.Model.Ventes;
@@ -16,7 +16,7 @@ public class VentesDto {
 
   private String code;
 
-  private Instant dateVente;
+  private LocalDate dateVente;
 
   private String commentaire;
 

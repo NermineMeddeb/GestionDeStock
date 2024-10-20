@@ -2,7 +2,7 @@ package Mts.Crud.Services.implementation;
 
 
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -73,7 +73,7 @@ public class EntrepriseServiceImpl implements EntrepriseService {
         .email(dto.getEmail())
         .moteDePasse(generateRandomPassword())
         .entreprise(dto)
-        .dateDeNaissance(Instant.now())
+        .dateDeNaissance(LocalDate.now())
         .photo(dto.getPhoto())
         .build();
   }

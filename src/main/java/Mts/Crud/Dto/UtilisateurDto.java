@@ -1,7 +1,7 @@
 package Mts.Crud.Dto;
 
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +21,7 @@ public class UtilisateurDto {
 
   private String email;
 
-  private Instant dateDeNaissance;
+  private LocalDate dateDeNaissance;
 
   private String moteDePasse;
 

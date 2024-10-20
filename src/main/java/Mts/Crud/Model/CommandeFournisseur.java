@@ -1,6 +1,6 @@
 package Mts.Crud.Model;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ public class CommandeFournisseur extends EntiteAbstraite {
   private String code;
 
   @Column(name = "datecommande")
-  private Instant dateCommande;
+  private LocalDate dateCommande;
 
   @Column(name = "etatcommande")
   @Enumerated(EnumType.STRING)
@@ -36,9 +36,8 @@ public class CommandeFournisseur extends EntiteAbstraite {
   @OneToMany(mappedBy = "commandeFournisseur")
   private List<LigneCommandeFournisseur> ligneCommandeFournisseurs;
 
-public void setEtatCommande(EtatCommande etatCommande2) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'setEtatCommande'");
+public void setEtatCommande(EtatCommande etatCommande) {
+   this.etatCommande = etatCommande;
 }
 
 

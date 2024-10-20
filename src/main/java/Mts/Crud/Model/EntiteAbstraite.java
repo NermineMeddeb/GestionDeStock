@@ -8,7 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDate;
+
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -31,14 +32,14 @@ public abstract class EntiteAbstraite implements Serializable {
 
     // Date de création de l'entité, ne peut pas être null
     @CreatedDate
-    @Column(name = "creation_date", nullable = false, updatable = false)
-    private Instant dateDeCreation;
+    @Column(name = "creation_date", nullable = true, updatable = false)
+    private LocalDate dateDeCreation;
 
     // Date de la dernière modification de l'entité, ignorée lors de la sérialisation JSON
     @LastModifiedDate
     @Column(name = "latest_modified_date")
     @JsonIgnore
-    private Instant lastModifiedDate;
+    private LocalDate lastModifiedDate;
 
     // Les annotations @Data de Lombok génèrent automatiquement les getters et setters
 }

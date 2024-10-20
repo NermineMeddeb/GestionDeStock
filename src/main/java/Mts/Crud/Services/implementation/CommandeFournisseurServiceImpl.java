@@ -2,7 +2,7 @@ package Mts.Crud.Services.implementation;
 
 
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 import Mts.Crud.Dto.ArticleDto;
+import Mts.Crud.Dto.CommandeClientDto;
 import Mts.Crud.Dto.CommandeFournisseurDto;
 import Mts.Crud.Dto.FournisseurDto;
 import Mts.Crud.Dto.LigneCommandeFournisseurDto;
@@ -44,6 +45,7 @@ import Mts.Crud.Services.CommandeFournisseurService;
 
 import Mts.Crud.Validateur.ArticleValidateur;
 import Mts.Crud.Validateur.CommandeFournisseurValidateur;
+import jakarta.persistence.EntityNotFoundException;
 
 
 @Service
@@ -115,7 +117,7 @@ public class CommandeFournisseurServiceImpl implements CommandeFournisseurServic
       throw new InvalidEntity("Article n'existe pas dans la BDD", ErrorCodes.ARTICLE_NOT_FOUND, articleErrors);
     }
 
-    dto.setDateCommande(Instant.now());
+    dto.setDateCommande(LocalDate.now());
     CommandeFournisseur savedCmdFrs = commandeFournisseurRepository.save(CommandeFournisseurDto.toEntity(dto));
 
     // Enregistrer les lignes de commande fournisseur
@@ -315,7 +317,7 @@ public class CommandeFournisseurServiceImpl implements CommandeFournisseurServic
 
     MvtStkDto mvtStkDto = MvtStkDto.builder()
         .article(ArticleDto.fromEntity(lig.getArticle()))
-        .dateMvt(Instant.now())
+        .dateMvt(LocalDate.now())
         .typeMvt(TypeMvtStk.ENTREE)
         .sourceMvt(SourceMvtStk.COMMANDE_FOURNISSEUR)
         .quantite(lig.getQuantite())
@@ -323,10 +325,24 @@ public class CommandeFournisseurServiceImpl implements CommandeFournisseurServic
         .build();
     mvtStkService.entreeStock(mvtStkDto);
   }
-
-  @Override
+private Optional<LigneCommandeFournisseur> findLigneCommandeFournisseur(Integer idLigneCommande) {
+    Optional<LigneCommandeFournisseur> ligneCommandeFournisseurOptional = ligneCommandeFournisseurRepository.findById(idLigneCommande);
+    if (ligneCommandeFournisseurOptional.isEmpty()) {
+      throw new EntityNotFound(
+          "Aucune ligne commande fournisseur n'a ete trouve avec l'ID " + idLigneCommande, ErrorCodes.COMMANDE_FOURNISSEUR_NOT_FOUND);
+    }
+    return ligneCommandeFournisseurOptional;
+  }
   public CommandeFournisseurDto deleteArticle(Integer idCommande, Integer idLigneCommande) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'deleteArticle'");
+    checkIdCommande(idCommande);
+    checkIdLigneCommande(idLigneCommande);
+
+    CommandeFournisseurDto commandeFournisseur = checkEtatCommande(idCommande);
+    // Just to check the LigneCommandeFournisseur and inform the fournisseur in case it is absent
+    findLigneCommandeFournisseur(idLigneCommande);
+    ligneCommandeFournisseurRepository.deleteById(idLigneCommande);
+
+    return commandeFournisseur;
+  
   }
 }

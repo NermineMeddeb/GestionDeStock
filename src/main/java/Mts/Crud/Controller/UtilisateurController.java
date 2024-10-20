@@ -10,7 +10,6 @@ import Mts.Crud.Dto.UtilisateurDto;
 import Mts.Crud.Services.UtilisateurService;
 
 
-@RequestMapping("/utilisateurs")
 @RestController
 public class UtilisateurController implements UtilisateurApi {
 

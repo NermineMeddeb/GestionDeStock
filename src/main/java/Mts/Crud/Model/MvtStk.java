@@ -4,7 +4,7 @@ package Mts.Crud.Model;
 import java.math.BigDecimal;
 import jakarta.persistence.*;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class MvtStk extends EntiteAbstraite {
 
   @Column(name = "datemvt")
-  private Instant dateMvt;
+  private LocalDate dateMvt;
 
   @Column(name = "quantite")
   private BigDecimal quantite;

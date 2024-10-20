@@ -9,8 +9,7 @@ import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-@Api("authentication")
+//@Api("authentication")
 public interface AuthenticationApi {
 
   @PostMapping(AUTHENTICATION_ENDPOINT + "/authenticate")

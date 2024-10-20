@@ -2,7 +2,7 @@ package Mts.Crud.Model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,7 +28,7 @@ public class Utilisateur extends EntiteAbstraite {
   private String email;
 
   @Column(name = "datedenaissance")
-  private Instant dateDeNaissance;
+  private LocalDate dateDeNaissance;
 
   @Column(name = "motdepasse")
   private String moteDePasse;

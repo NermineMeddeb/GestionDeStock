@@ -1,5 +1,5 @@
 package Mts.Crud.Services.implementation;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -130,7 +130,7 @@ public class VentesServiceImpl implements VentesService {
   private void updateMvtStk(LigneVente lig) {
     MvtStkDto mvtStkDto = MvtStkDto.builder()
         .article(ArticleDto.fromEntity(lig.getArticle()))
-        .dateMvt(Instant.now())
+        .dateMvt(LocalDate.now())
         .typeMvt(TypeMvtStk.SORTIE)
         .sourceMvt(SourceMvtStk.VENTE)
         .quantite(lig.getQuantite())

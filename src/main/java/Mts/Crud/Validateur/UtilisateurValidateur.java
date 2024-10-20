@@ -12,8 +12,8 @@ public class UtilisateurValidateur {
       errors.add("Veuillez renseigner le nom d'utilisateur");
       errors.add("Veuillez renseigner le prenom d'utilisateur");
       errors.add("Veuillez renseigner le mot de passe d'utilisateur");
-      errors.add("Veuillez renseigner l'adresse d'utilisateur");
-      errors.addAll(AdresseValidateur.validate(null));
+    //  errors.add("Veuillez renseigner l'adresse d'utilisateur");
+     // errors.addAll(AdresseValidateur.validate(null));
       return errors;
     }
 
@@ -32,7 +32,7 @@ public class UtilisateurValidateur {
     if (utilisateurDto.getDateDeNaissance() == null) {
       errors.add("Veuillez renseigner la date de naissance d'utilisateur");
     }
-    errors.addAll(AdresseValidateur.validate(utilisateurDto.getAdresse()));
+    //errors.addAll(AdresseValidateur.validate(utilisateurDto.getAdresse()));
 
     return errors;
   }

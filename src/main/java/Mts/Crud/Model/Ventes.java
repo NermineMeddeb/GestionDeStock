@@ -1,7 +1,7 @@
 package Mts.Crud.Model;
 
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,7 +21,7 @@ public class Ventes extends EntiteAbstraite {
   private String code;
 
   @Column(name = "datevente")
-  private Instant dateVente;
+  private LocalDate dateVente;
 
   @Column(name = "commentaire")
   private String commentaire;

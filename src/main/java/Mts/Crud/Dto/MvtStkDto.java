@@ -2,7 +2,7 @@ package Mts.Crud.Dto;
 
 
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.time.LocalDate;
 
 import Mts.Crud.Model.MvtStk;
 import Mts.Crud.Model.SourceMvtStk;
@@ -16,7 +16,7 @@ public class MvtStkDto {
 
   private Integer id;
 
-  private Instant dateMvt;
+  private LocalDate dateMvt;
 
   private BigDecimal quantite;
 

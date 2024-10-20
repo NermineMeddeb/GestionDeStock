@@ -27,14 +27,15 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/**/authenticate",
-                                 "/**/entreprises/create",
-                                 "/v2/api-docs",
-                                 "/swagger-resources/**",
-                                 "/swagger-ui.html",
-                                 "/webjars/**",
-                                 "/v3/api-docs/**",
-                                 "/swagger-ui/**").permitAll()
+                .requestMatchers(
+                        "/v2/api-docs",
+                        "/swagger-resources/**",
+                        "/swagger-ui.html",
+                        "/webjars/**",
+                        "/v3/api-docs/**",
+                        "/swagger-ui/**",
+                        "/gestiondestock/v1/**"
+                ).permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(applicationRequestFilter, UsernamePasswordAuthenticationFilter.class);
@@ -56,3 +57,4 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 }
+

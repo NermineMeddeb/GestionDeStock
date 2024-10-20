@@ -1,7 +1,7 @@
 package Mts.Crud.Services.implementation;
 
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -102,7 +102,7 @@ public class CommandeClientServiceImpl implements CommandeClientService {
     }
 
     // Définir la date de commande
-    dto.setDateCommande(Instant.now());
+    dto.setDateCommande(LocalDate.now());
     // Sauvegarder la commande client
     CommandeClient savedCmdClt = commandeClientRepository.save(CommandeClientDto.toEntity(dto));
 
@@ -320,7 +320,7 @@ public class CommandeClientServiceImpl implements CommandeClientService {
   private void effectuerSortie(LigneCommandeClient lig) {
     MvtStkDto mvtStkDto = MvtStkDto.builder()
         .article(ArticleDto.fromEntity(lig.getArticle()))
-        .dateMvt(Instant.now())
+        .dateMvt(LocalDate.now())
         .typeMvt(TypeMvtStk.SORTIE)
         .sourceMvt(SourceMvtStk.COMMANDE_CLIENT)
         .quantite(lig.getQuantite())

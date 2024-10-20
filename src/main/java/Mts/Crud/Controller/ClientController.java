@@ -3,12 +3,17 @@ package Mts.Crud.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import Mts.Crud.Controller.Api.ClientApi;
 import Mts.Crud.Dto.ClientDto;
 import Mts.Crud.Services.ClientService;
+@CrossOrigin(origins = "http://localhost:4200") // Permet l'accès à cette ressource
 
 public class ClientController implements ClientApi  {
+      @GetMapping("/gestiondestock/v1/clients/all")
+
     private ClientService clientService;
 
     @Autowired

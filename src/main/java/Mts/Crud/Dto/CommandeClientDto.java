@@ -5,7 +5,7 @@ package Mts.Crud.Dto;
 import Mts.Crud.Model.CommandeClient;
 import Mts.Crud.Model.EtatCommande;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +18,7 @@ public class CommandeClientDto {
 
   private String code;
 
-  private Instant dateCommande;
+  private LocalDate dateCommande;
 
   private EtatCommande etatCommande;
 
